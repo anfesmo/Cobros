@@ -1,0 +1,416 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape"
+        media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png"
+        media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"
+        media="(device-width: 768px)  and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"
+        media="(device-width: 768px) and (orientation: landscape)    and (-webkit-device-pixel-ratio: 2)" />
+    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="styles/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="styles/swipebox.css" rel="stylesheet" type="text/css">
+    <link href="styles/colorbox.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jqueryui.js"></script>
+    <script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="scripts/colorbox.js"></script>
+    <script type="text/javascript" src="scripts/snap.js"></script>
+    <script type="text/javascript" src="scripts/contact.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+    <script type="text/javascript" src="scripts/framework.js"></script>
+    <script type="text/javascript" src="scripts/framework.launcher.js"></script>
+    <script type="text/javascript" src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
+    <script type="text/javascript" src="scripts/bd.js"></script>
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                Cargando contenido... <em>La carga depende de su conexión a internet!</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+         <div id="sidebar" class="page-sidebar">
+            <div class="page-sidebar-scroll">
+                <div class="sidebar-shortcuts">
+                    <a href="#" class="shortcut-close"></a>
+                </div>
+                
+                <div class="sidebar-search">
+                    <div class="search-box">
+                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?">
+                        <a href="#" class="search-close"></a>
+                    </div>
+                </div>
+                
+                <div class="sidebar-logo">
+                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+                </div>
+                
+                <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
+                <div class="navigation-item">
+                    <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+                
+                <div class="sidebar-breadcrumb">
+                </div>
+            </div>         
+        </div>
+     
+        <div id="content" class="page-content">
+            <div class="page-header">
+                <a href="#" class="deploy-sidebar"></a>
+                <img class="header-logo" src="images/drugs/odc-texto.png" width="71" alt="img">
+            </div>
+            <div class="page-header-clear">
+            </div>
+            <div class="content">
+                <div class="decoration">
+                </div>
+                <div class="container no-bottom">
+                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
+                    <fieldset>
+                        <div class="formValidationError" id="usuario_error">
+                            <div class="static-notification-red tap-dismiss-notification">
+                                <p class="center-text uppercase">
+                                    Debe ingresar el nombre de usuario</p>
+                            </div>
+                        </div>
+                        <div class="formValidationError" id="password_error">
+                            <div class="static-notification-red tap-dismiss-notification">
+                                <p class="center-text uppercase">
+                                    Debe ingresar la contraseña</p>
+                            </div>
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactNameField" for="contactNameField">
+                                Usuario:<span>(requerido)</span></label>
+                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
+                                id="contactNameField" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Contraseña:<span>(requerido)</span></label>
+                            <input type="password" name="contactEmailField" value="" class="contactField requiredField"
+                                id="contactEmailField" />
+                        </div>
+                        <br />
+                        <div class="formSubmitButtonErrorsWrap">
+                            <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
+                                value="Enviar" data-formid="contactForm" onclick="iniciar_sesion();" />
+                            <div class="static-notification-green tap-dismiss-notification" style="display: none; margin-top: 15px;" id="div_guardado">
+                                <p class="center-text">Los datos han sido almacenados correctamente</p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    </form>
+                </div>
+                <div class="decoration">
+                </div>
+                <div id="loading" class="CargandoModalBackground">
+                    <img src="images/bx_loader.gif" alt="loding" class="CargandoModalBackgroundImage" />
+                </div>
+                <div class="container">
+                    <div class="footer-socials">
+                        <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
+                            class="twitter-footer"></a>
+                    </div>
+                   <p class="copyright uppercase center-text no-bottom">Gestión de cobros 2014<br> Todos los derechos reservados</p>      
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            configurar_db();
+        });
+
+        var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0};
+        var clientes = [];
+
+        function iniciar_sesion() {
+            //$("#select_sector>option").remove();
+            if($('#contactNameField').val() == ""){
+                alert("Debe ingresar el nombre de usuario");
+            }
+            else{
+                if($('#contactEmailField').val() == ""){
+                    alert("Debe ingresar la contraseña");
+                }
+                else{
+                    MostrarDivCargando();
+                    var usuario = $('#contactNameField').val();
+                    var pass = $('#contactEmailField').val();
+                    //var texto = "";
+                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'json',
+                        crossDomain: true,
+                        success: function (data) {
+
+                            $.each(data, function (i, field) {
+                                
+                                //var cant = field.length;
+                                //texto += " <option value='-1'>--TODOS--</option>";
+                                $.each(field, function (x, item) {
+                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
+                                    if(field[x].Codusua == 0){
+                                        OcultarDivCargando();
+                                        alert(field[x].Mensaje);
+                                    }
+                                    else{
+                                        localStorage.setItem("idGestor", field[x].Codusua);
+                                        //consultamos los datos de la base de datos
+                                        //clientes
+                                        consultarClientes();
+                                        //location.href = "lista_clientes.html";
+                                    }
+                                });
+                                //$("#select_sector").append(texto);
+                                //$("#select_sector").val("-1");
+                                //$("#select_sector").selectmenu('refresh');
+                            });
+                        },
+                        error: function (x, y, z) {
+                            alert("No se encuentra una conexión 3G o Wifi activa.")
+                        }, 
+                        timeout: 15000                          
+                    });
+                }
+            
+            }
+        }
+
+        function consultarClientes(){
+            var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'json',
+                        crossDomain: true,
+                        success: function (data) {
+
+                            $.each(data, function (i, field) {
+                                
+                                //var cant = field.length;
+                                //texto += " <option value='-1'>--TODOS--</option>";
+                                eliminarClientes();
+                                $.each(field, function (x, item) {
+                                    //alert("hola");
+                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
+                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente};
+                                    clientes[x] = cliente;
+                                });
+                                insertarClientes();
+                                //$("#select_sector").append(texto);
+                                //$("#select_sector").val("-1");
+                                //$("#select_sector").selectmenu('refresh');
+                            });
+                        },
+                        error: function (x, y, z) {
+                            //alert("No se encuentra una conexión 3G o Wifi activa.")
+                        }, 
+                        timeout: 15000                          
+                    });
+        }
+
+        function eliminarClientes(){
+            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
+            db.transaction(eliminar_clientes, errorGeneralBD, function () {
+                console.log("Eliminó los clientes");
+            });
+        }
+
+        function eliminar_clientes(tx) {
+            tx.executeSql("DELETE FROM clientes", [], validar_eliminacion, function (error) {
+                console.log("Error eliminando los clientes" + error)
+            });
+        }
+
+        function validar_eliminacion(tx, results) {
+            console.log("eliminados");
+        }
+
+        function errorGeneralBD(err) {
+            console.log(err);
+        }
+
+        function insertarClientes(){
+            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
+            db.transaction(insertar_Clientes, errorGeneralBD, function () {
+                console.log("Consultó el cliente")
+            });
+        }
+
+        function insertar_Clientes(tx) {
+            if(clientes.length > 0){
+                for(i=0;i<clientes.length;i++){
+                    //alert(clientes[i].nombre);
+                    tx.executeSql("INSERT INTO clientes (idCliente, Nombre, Telefono, Cedula) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"')");
+                }
+                OcultarDivCargando();
+                 location.href = "lista_clientes.html";
+            }
+            else{
+                OcultarDivCargando();
+                alert("No se encuentran clientes.")
+            }
+            
+
+            //tx.executeSql("SELECT * FROM clientes WHERE idCliente = ");
+        }
+
+
+
+
+        var usuario;
+        var pass;
+
+        function llenar(num) {
+            var number;
+            for (var i = 1; i <= 5; i++) {
+                if (i <= num) {
+                    number = 'images/estrella_llena.png'
+                }
+                else {
+                    number = 'images/estrella_vacia.png'
+                }
+                $('#star' + i).attr('src', number);
+            }
+        }
+
+        function mostrarDiv() {
+            usuario = $('#contactNameField').val();
+            pass = hex_md5($('#contactEmailField').val());
+            consultarUsuario();
+        }
+
+         function consultarUsuario() {
+            var db = window.openDatabase("bd_reportes", "1.0", "Reporte Vial", 200000);
+            db.transaction(consultar_sesionUsuario, errorConsultar_usuario, function () {
+                console.log("Consultó el usuario")
+            });
+        }
+
+        function consultar_sesionUsuario(tx) {
+            tx.executeSql("SELECT * FROM usuarios", [], validar_sesion_usuario, function (error) {
+                console.log("Error consultado el usuario: " + error)
+            });
+        }
+
+        function validar_sesion_usuario(tx, results) {
+            var len = results.rows.length;
+            if (len > 0) {
+                for (var i = 0; i < len; i++) {
+                    if (results.rows.item(i).usuario == usuario && results.rows.item(i).password == pass) {
+                        localStorage.setItem("nombreUsuario", $("#contactNameField").val());
+                        location.href = "index.html";
+                    }
+                }
+            }
+            else {
+                alert("Los datos son incorrectos.");
+                location.reload();
+            }
+        }
+
+        function errorConsultar_usuario(err) {
+            console.log(err);
+            alert("Error consultando listado marcadores" + err);
+        }
+
+    </script>
+    <style>
+        #contactNameField {
+            text-transform: none;
+        }
+
+        .submenu-nav-items a
+        {
+            padding-left: 20px !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            border-bottom: solid 1px rgba(0,0,0,0.1) !important;
+        }
+        
+        .vinculo_derecha
+        {
+            float: right;
+            padding-right: 1%;
+        }
+        
+        .vinculo_izquierda
+        {
+            float: left;
+            padding-left: 1%;
+            display: none;
+        }
+        
+        .CargandoModalBackground
+        {
+            overflow: hidden;
+            background-color: #0D0D0D;
+            filter: alpha(opacity=90);
+            opacity: 0.9;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 9999;
+            color: white;
+            text-align: left;
+        }
+        
+        .styled-select
+        {
+            width: 95%;
+            height: 34px;
+            overflow: hidden;
+            background: url(images/flecha_abajo.png) no-repeat right #F4F4F4;
+            padding: 3px;
+            margin: 5px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+            color: #888;
+            border: none;
+            outline: none;
+            display: inline-block;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>

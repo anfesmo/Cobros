@@ -146,7 +146,7 @@
             configurar_db();
         });
 
-        var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0};
+        var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};
         var clientes = [];
 
         function iniciar_sesion() {
@@ -195,7 +195,8 @@
                             });
                         },
                         error: function (x, y, z) {
-                            alert("No se encuentra una conexión 3G o Wifi activa.")
+                            //alert("No se encuentra una conexión 3G o Wifi activa.")
+                            OcultarDivCargando();
                         }, 
                         timeout: 15000                          
                     });
@@ -221,7 +222,7 @@
                                 $.each(field, function (x, item) {
                                     //alert("hola");
                                     //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente};
+                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres};
                                     clientes[x] = cliente;
                                 });
                                 insertarClientes();
@@ -232,6 +233,7 @@
                         },
                         error: function (x, y, z) {
                             //alert("No se encuentra una conexión 3G o Wifi activa.")
+                            OcultarDivCargando();
                         }, 
                         timeout: 15000                          
                     });
@@ -269,79 +271,19 @@
             if(clientes.length > 0){
                 for(i=0;i<clientes.length;i++){
                     //alert(clientes[i].nombre);
-                    tx.executeSql("INSERT INTO clientes (idCliente, Nombre, Telefono, Cedula) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"')");
+                    tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"', '"+clientes[i].CodGestor+"', '"+clientes[i].CodPrestamo+"', '"+clientes[i].FechaPrestamo+"', '"+clientes[i].FechaVencimientoPrestamo+"', '"+clientes[i].NroCuotasPrestamo+"', '"+clientes[i].NroCuotasResta+"', '"+clientes[i].VlrCuota+"', '"+clientes[i].VlrIntreses+"', '"+clientes[i].VlrPrestamo+"', '"+clientes[i].VlrSaldoConInteres+"', '"+clientes[i].VlrSaldoSinInteres+"')");
                 }
                 OcultarDivCargando();
-                 location.href = "lista_clientes.html";
+                location.href = "lista_clientes.html";
             }
             else{
                 OcultarDivCargando();
-                alert("No se encuentran clientes.")
+                //alert("No se encuentran clientes.")
             }
             
 
             //tx.executeSql("SELECT * FROM clientes WHERE idCliente = ");
         }
-
-
-
-
-        var usuario;
-        var pass;
-
-        function llenar(num) {
-            var number;
-            for (var i = 1; i <= 5; i++) {
-                if (i <= num) {
-                    number = 'images/estrella_llena.png'
-                }
-                else {
-                    number = 'images/estrella_vacia.png'
-                }
-                $('#star' + i).attr('src', number);
-            }
-        }
-
-        function mostrarDiv() {
-            usuario = $('#contactNameField').val();
-            pass = hex_md5($('#contactEmailField').val());
-            consultarUsuario();
-        }
-
-         function consultarUsuario() {
-            var db = window.openDatabase("bd_reportes", "1.0", "Reporte Vial", 200000);
-            db.transaction(consultar_sesionUsuario, errorConsultar_usuario, function () {
-                console.log("Consultó el usuario")
-            });
-        }
-
-        function consultar_sesionUsuario(tx) {
-            tx.executeSql("SELECT * FROM usuarios", [], validar_sesion_usuario, function (error) {
-                console.log("Error consultado el usuario: " + error)
-            });
-        }
-
-        function validar_sesion_usuario(tx, results) {
-            var len = results.rows.length;
-            if (len > 0) {
-                for (var i = 0; i < len; i++) {
-                    if (results.rows.item(i).usuario == usuario && results.rows.item(i).password == pass) {
-                        localStorage.setItem("nombreUsuario", $("#contactNameField").val());
-                        location.href = "index.html";
-                    }
-                }
-            }
-            else {
-                alert("Los datos son incorrectos.");
-                location.reload();
-            }
-        }
-
-        function errorConsultar_usuario(err) {
-            console.log(err);
-            alert("Error consultando listado marcadores" + err);
-        }
-
     </script>
     <style>
         #contactNameField {

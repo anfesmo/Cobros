@@ -1,0 +1,258 @@
+﻿<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="styles/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="styles/swipebox.css" rel="stylesheet" type="text/css">
+    <link href="styles/colorbox.css" rel="stylesheet" type="text/css">
+    <style>
+        .star
+        {
+            display: inline;
+            background-image: url(../images/misc/facebook.png);
+            width: 30px;
+            margin: 0px 0px 0px 47px;
+        }
+    </style>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jqueryui.js"></script>
+    <script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="scripts/colorbox.js"></script>
+    <script type="text/javascript" src="scripts/snap.js"></script>
+    <script type="text/javascript" src="scripts/contact.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+    <script type="text/javascript" src="scripts/framework.js"></script>
+    <script type="text/javascript" src="scripts/framework.launcher.js"></script>
+    <script type="text/javascript" src="scripts/bd.js"></script>
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                Cargando contenido... <em>La carga depende de su conexión a internet!</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div id="sidebar" class="page-sidebar">
+            <div class="page-sidebar-scroll">
+                <div class="sidebar-shortcuts">
+                    <a href="#" class="shortcut-close"></a>
+                </div>
+                
+                <div class="sidebar-search">
+                    <div class="search-box">
+                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?">
+                        <a href="#" class="search-close"></a>
+                    </div>
+                </div>
+                
+                <div class="sidebar-logo">
+                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+                </div>
+                
+                <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
+                <div class="navigation-item">
+                    <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+                
+                <div class="sidebar-breadcrumb">
+                </div>
+            </div>         
+        </div>
+        <div id="content" class="page-content">
+            <div class="page-header">
+                <a href="#" class="deploy-sidebar"></a>
+                <img class="header-logo" src="images/drugs/odc-texto.png" width="71" alt="img">
+            </div>
+            <div class="page-header-clear">
+            </div>
+            <div class="content">
+                <div class="decoration">
+                </div>
+                <div class="container no-bottom" style="text-align: center;">
+                    <h3>
+                        DETALLE DEL CLIENTE</h3>
+                </div>
+                <div class="decoration">
+                </div>
+                <div class="container no-bottom">
+                    <div class="big-notification blue-notification">
+                        <h4 class="uppercase">
+                            AYUDA</h4>
+                        <a href="#" class="close-big-notification">x</a>
+                        <p>
+                            En este módulo encontrá la información detallada sobre el cliente seleccionado.
+                        </p>
+                    </div>
+                </div>
+                <div id ="ofertas">
+                    <div class="formSubmitButtonErrorsWrap">
+                            <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
+                                value="Volver al listado de clientes" data-formid="contactForm" onclick="mostrarClientes();" />
+                        </div>
+                        <br />
+                    <div class="container">
+                    <div class="toggle-2">
+                        <a href="#" class="deploy-toggle-2 toggle-2-active">
+                            <label id="lblNombre"></label>
+                        </a>
+                        <div class="toggle-content" style="display:block;">
+                            <div class="toggle-content" style="display:block;">
+                                <p><strong>Datos del prestamo:</strong></p>
+                                <div class="one-half-responsive ">
+                                    <div class="submenu-navigation">
+                                        <div class="submenu-nav-items" style="overflow: hidden; display: block;"></div>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblValorPrestamo">Valor del prestamo: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblFechaPrestamo">Fecha prestamo: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblFechaVencimientoPrestamo">Fecha vencimiento: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblNumeroCuotas">Número de cuotas del prestamo: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblNumeroCuotasResta">Número de cuotas que resta: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblValorCuota">Valor de la cuota: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblValorInteres">Valor de los intereses: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblSaldoCon">Valor del saldo con intereses: </label></li>
+                                            </ul>
+                                        </a>
+                                        <a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;">
+                                            <ul style="margin-bottom:0px;" class="icon-list">
+                                                <li class="right-list"><label id="lblSaldoSin">Valor del saldo sin intereses: </label></li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="decoration">
+                </div>
+                <div class="container">
+                    <div class="footer-socials">
+                        <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
+                            class="twitter-footer"></a>
+                    </div>
+                    <p class="copyright uppercase center-text no-bottom">
+                        MINTRABAJO 2014<br>
+                        Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <style>
+        .submenu-nav-items a
+        {
+            padding-left: 20px !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            border-bottom: solid 1px rgba(0,0,0,0.1) !important;
+        }
+        
+        .vinculo_derecha
+        {
+            float: right;
+            padding-right: 1%;
+        }
+        
+        .vinculo_izquierda
+        {
+            float: left;
+            padding-left: 1%;
+            display: none;
+        }
+    </style>
+    <script>
+
+
+        function mostrarClientes() {
+            location.href = "lista_clientes.html";
+        }
+
+        function consultarCliente(){
+            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
+            db.transaction(consultar_cliente, errorGeneralBD, function () {
+                //console.log("Consultó el usuario")
+            });
+        }
+
+        function consultar_cliente(tx) {
+            tx.executeSql("SELECT * FROM clientes WHERE CodCliente = '"+localStorage.getItem("clienteConsultado")+"'", [], llenar_cliente, function (error) {
+                //console.log("Error consultado el usuario: " + error)
+            });
+        }
+
+        function llenar_cliente(tx, results) {
+            var len = results.rows.length;
+            if (len > 0) {
+                for (var i = 0; i < len; i++) {
+                    document.getElementById("lblNombre").innerHTML = results.rows.item(i).Nombre;
+                    document.getElementById("lblValorPrestamo").innerHTML = document.getElementById("lblValorPrestamo").innerHTML + results.rows.item(i).VlrPrestamo;
+                    document.getElementById("lblFechaPrestamo").innerHTML = document.getElementById("lblFechaPrestamo").innerHTML+results.rows.item(i).FechaPrestamo;
+                    document.getElementById("lblFechaVencimientoPrestamo").innerHTML = document.getElementById("lblFechaVencimientoPrestamo").innerHTML +results.rows.item(i).FechaVencimientoPrestamo;
+                    document.getElementById("lblNumeroCuotas").innerHTML = document.getElementById("lblNumeroCuotas").innerHTML+results.rows.item(i).NroCuotasPrestamo;
+                    document.getElementById("lblNumeroCuotasResta").innerHTML = document.getElementById("lblNumeroCuotasResta").innerHTML+results.rows.item(i).NroCuotasResta;
+                    document.getElementById("lblValorCuota").innerHTML = document.getElementById("lblValorCuota").innerHTML+results.rows.item(i).VlrCuota;
+                    document.getElementById("lblValorInteres").innerHTML = document.getElementById("lblValorInteres").innerHTML+results.rows.item(i).VlrIntreses;
+                    document.getElementById("lblSaldoCon").innerHTML = document.getElementById("lblSaldoCon").innerHTML +results.rows.item(i).VlrSaldoConInteres;
+                    document.getElementById("lblSaldoSin").innerHTML = document.getElementById("lblSaldoSin").innerHTML +results.rows.item(i).VlrSaldoSinInteres;
+                }
+            }
+            else {
+                alert("No se encontró información del cliente.");
+                //location.reload();
+            }
+        }
+
+        function errorGeneralBD(err) {
+            console.log(err);
+        }
+        $(document).ready(function () {
+            consultarCliente();
+        });
+
+    </script>
+</body>
+</html> 

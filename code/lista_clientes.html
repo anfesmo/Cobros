@@ -105,6 +105,19 @@
                         Listado de Clientes
                     </h4>
                 </div>
+                 <div class="formFieldWrap">
+                    <label class="field-title contactNameField" for="contactNameField">
+                        Código interno o cédula del cliente a buscar:</label>
+                    <input type="text" name="contactNameField" value="" class="contactField requiredField"
+                        id="txtCodigo" />
+                </div>
+                <div class="formSubmitButtonErrorsWrap">
+                    <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
+                        value="Buscar" data-formid="contactForm" onclick="buscarCliente();" />
+                        <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
+                        value="Mostrar todos" data-formid="contactForm" onclick="consultarClientes();" />
+                </div>
+                <br />
                 <div id="div_Clientes">
                     
                 </div>
@@ -192,8 +205,27 @@
 
         function consultarCobros(codCliente){
             localStorage.setItem("clienteConsultado", codCliente);
+            localStorage.setItem("idGestor", localStorage.getItem("idGestor"));
             location.href = "datos_cobro.html";
             //alert(codCliente);
+        }
+
+        function buscarCliente(){
+            if($('#txtCodigo').val() == ""){
+                alert("Debe ingresar un código o cédula.")
+            }
+            else{
+                var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
+                db.transaction(buscar_cliente, errorGeneralBD, function () {
+                    //console.log("Consultó el usuario")
+                });
+            }
+        }
+
+        function buscar_cliente(tx) {
+            tx.executeSql("SELECT * FROM clientes WHERE CodCliente = '"+$('#txtCodigo').val()+"' OR NroIdentificacion='"+$('#txtCodigo').val()+"'", [], llenar_clientes, function (error) {
+                //console.log("Error consultado el usuario: " + error)
+            });
         }
 
     </script>

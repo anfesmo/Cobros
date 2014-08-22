@@ -71,6 +71,10 @@
                     <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
                 
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -254,57 +258,6 @@
                 }
                 
             }
-             setTimeout("subirRecaudo()", 5000);
-        }
-
-        function subirRecaudo(){
-            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
-            db.transaction(consultar_recaudos_nuevos, errorGeneralBD, function () {
-                
-            });
-        }
-
-        function consultar_recaudos_nuevos(tx) {
-            tx.executeSql("SELECT * FROM recaudos ", [], subir_recaudos, function (error) {
-                //console.log("Error consultado el usuario: " + error)
-            });
-        }
-
-        function subir_recaudos(tx, results) {
-            var len = results.rows.length;
-            var texto="";
-            if (len > 0) {
-                for (var i = 0; i < len; i++) {
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste;
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        dataType: 'json',
-                        crossDomain: true,
-                        success: function (data) {
-
-                            $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
-                                $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    //alert(field[x].CodPrestamo);
-                                });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
-                            });
-                        },
-                        error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
-                            //OcultarDivCargando();
-                        }, 
-                        timeout: 15000                          
-                    });
-                }
-                
-            }
              setTimeout("consultarClientes()", 5000);
         }
 
@@ -352,10 +305,6 @@
         function eliminar_clientes(tx) {
             tx.executeSql("DELETE FROM clientes", [], validar_eliminacion, function (error) {
                 console.log("Error eliminando los clientes" + error)
-            });
-
-            tx.executeSql("DELETE FROM recaudos", [], validar_eliminacion, function (error) {
-                console.log("Error eliminando los recaudos" + error)
             });
         }
 

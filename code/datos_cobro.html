@@ -314,7 +314,9 @@
                     else{
                         $('#btnNuevoPrestamo').hide();
                         if(results.rows.item(i).esNuevo == "0"){
-                            $('#btnRecaudo').show();
+                            if(localStorage.getItem("codigoAnterior") != localStorage.getItem("clienteConsultado")){
+                                $('#btnRecaudo').show();
+                            }
                         }
                         localStorage.setItem("codPrestamo", results.rows.item(i).CodPrestamo);
                         localStorage.setItem("valSaldo", results.rows.item(i).VlrSaldoConInteres);
@@ -417,9 +419,11 @@
                     ajuste = $('#txtAjuste').val();
                 }
             tx.executeSql("INSERT INTO recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud) VALUES ('"+localStorage.getItem("clienteConsultado")+"', '"+localStorage.getItem("codPrestamo")+"', '"+localStorage.getItem("idGestor")+"', '"+fecha+"', '"+$('#txtNumeroCuotas').val()+"', '"+ajuste+"', '"+localStorage.getItem("latitud")+"', '"+localStorage.getItem("longitud")+"')");
-            //location.href=location.href;
-            cancelar();
-            document.getElementById("btnRecaudo").style.display = "none !important";
+            
+            localStorage.setItem("codigoAnterior", localStorage.getItem("clienteConsultado"));
+            location.href=location.href;
+            //cancelar();
+
         }
 
         $(document).ready(function () {

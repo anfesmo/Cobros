@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="all-elements">
-         <div id="sidebar" class="page-sidebar">
+        <div id="sidebar" class="page-sidebar">
             <div class="page-sidebar-scroll">
                 <div class="sidebar-shortcuts">
                     <a href="#" class="shortcut-close"></a>
@@ -94,37 +94,82 @@
                 <div class="container no-bottom">
                     <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
                     <fieldset>
-                        <div class="formValidationError" id="usuario_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar el nombre de usuario</p>
-                            </div>
-                        </div>
-                        <div class="formValidationError" id="password_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar la contraseña</p>
-                            </div>
-                        </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
-                                Usuario:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="contactNameField" />
+                                Tipo de documento:<span>(requerido)</span></label>
+                            <select class="styled-select" name="selectTipo" id="selectTipo">
+                                <option value='1'>Cédula</option>
+                                <option value='2'>Cédula Extranjería</option>
+                                <option value='3'>Pasaporte</option>
+                                <option value='4'>Tarjeta de Identidad</option>
+                            </select>
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
-                                Contraseña:<span>(requerido)</span></label>
-                            <input type="password" name="contactEmailField" value="" class="contactField requiredField"
-                                id="contactEmailField" />
+                                Número de documento:<span>(requerido)</span></label>
+                            <input type="text" name="txtDocumento" value="" class="contactField requiredField"
+                                id="txtDocumento" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Nombres:<span>(requerido)</span></label>
+                            <input type="text" name="txtNombres" value="" class="contactField requiredField"
+                                id="txtNombres" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Apellidos:<span>(requerido)</span></label>
+                            <input type="text" name="txtApellidos" value="" class="contactField requiredField"
+                                id="txtApellidos" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Edad:<span>(requerido)</span></label>
+                            <input type="text" name="txtEdad" value="" class="contactField requiredField"
+                                id="txtEdad" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Fecha de nacimiento:<span>(requerido)</span></label>
+                            <input type="text" name="txtFecha" value="" class="contactField requiredField"
+                                id="txtFecha" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Sexo:<span>(requerido)</span></label>
+                            <select class="styled-select" name="selectSexo" id="selectSexo">
+                                <option value='1'>Masculino</option>
+                                <option value='2'>Femenino</option>
+                            </select>
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Teléfono:<span>(requerido)</span></label>
+                            <input type="text" name="txtTelefono" value="" class="contactField requiredField"
+                                id="txtTelefono" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Celular:<span>(requerido)</span></label>
+                            <input type="text" name="txtCelular" value="" class="contactField requiredField"
+                                id="txtCelular" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Dirección:<span>(requerido)</span></label>
+                            <input type="text" name="txtDireccion" value="" class="contactField requiredField"
+                                id="txtDireccion" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Correo:<span>(requerido)</span></label>
+                            <input type="text" name="txtCorreo" value="" class="contactField requiredField"
+                                id="txtCorreo" />
                         </div>
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Enviar" data-formid="contactForm" onclick="iniciar_sesion();" />
-                            <div class="static-notification-green tap-dismiss-notification" style="display: none; margin-top: 15px;" id="div_guardado">
-                                <p class="center-text">Los datos han sido almacenados correctamente</p>
-                            </div>
+                                value="Enviar" data-formid="contactForm" onclick="guardarCliente();" />
                         </div>
                     </fieldset>
                     </form>
@@ -153,82 +198,9 @@
         var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};
         var clientes = [];
 
-        function iniciar_sesion() {
-            //$("#select_sector>option").remove();
-            if($('#contactNameField').val() == ""){
-                alert("Debe ingresar el nombre de usuario");
-            }
-            else{
-                if($('#contactEmailField').val() == ""){
-                    alert("Debe ingresar la contraseña");
-                }
-                else{
-                    MostrarDivCargando();
-                    var usuario = $('#contactNameField').val();
-                    var pass = $('#contactEmailField').val();
-                    //var texto = "";
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        dataType: 'json',
-                        crossDomain: true,
-                        success: function (data) {
-
-                            $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
-                                $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    if(field[x].Codusua == 0){
-                                        OcultarDivCargando();
-                                        alert(field[x].Mensaje);
-                                    }
-                                    else{
-                                        localStorage.setItem("idGestor", field[x].Codusua);
-                                        //subimos la nueva información
-                                        subirInformacion();
-                                        //consultamos los datos de la base de datos
-                                        //clientes
-                                        //consultarClientes();
-                                    }
-                                });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
-                            });
-                        },
-                        error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
-                            OcultarDivCargando();
-                        }, 
-                        timeout: 15000                          
-                    });
-                }
+        function guardarCliente(){
             
-            }
-        }
-
-        function subirInformacion(){
-            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
-            db.transaction(consultar_prestamos_nuevos, errorGeneralBD, function () {
-                
-            });
-        }
-
-        function consultar_prestamos_nuevos(tx) {
-            tx.executeSql("SELECT * FROM clientes WHERE esNuevo = '1'", [], subir_prestamos, function (error) {
-                //console.log("Error consultado el usuario: " + error)
-            });
-        }
-
-        function subir_prestamos(tx, results) {
-            var len = results.rows.length;
-            var texto="";
-            if (len > 0) {
-                for (var i = 0; i < len; i++) {
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
+            var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -240,41 +212,7 @@
                                 
                                 //var cant = field.length;
                                 //texto += " <option value='-1'>--TODOS--</option>";
-                                $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    //alert(field[x].CodPrestamo);
-                                });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
-                            });
-                        },
-                        error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
-                            //OcultarDivCargando();
-                        }, 
-                        timeout: 15000                          
-                    });
-                }
-                
-            }
-             setTimeout("consultarClientes()", 5000);
-        }
-
-        function consultarClientes(){
-            var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        dataType: 'json',
-                        crossDomain: true,
-                        success: function (data) {
-
-                            $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
-                                eliminarClientes();
+                                //eliminarClientes();
                                 $.each(field, function (x, item) {
                                     //alert("hola");
                                     //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
@@ -293,23 +231,7 @@
                         }, 
                         timeout: 15000                          
                     });
-        }
-
-        function eliminarClientes(){
-            var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
-            db.transaction(eliminar_clientes, errorGeneralBD, function () {
-                console.log("Eliminó los clientes");
-            });
-        }
-
-        function eliminar_clientes(tx) {
-            tx.executeSql("DELETE FROM clientes", [], validar_eliminacion, function (error) {
-                console.log("Error eliminando los clientes" + error)
-            });
-        }
-
-        function validar_eliminacion(tx, results) {
-            console.log("eliminados");
+        
         }
 
         function errorGeneralBD(err) {
@@ -329,7 +251,9 @@
                     //alert(clientes[i].nombre);
                     tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"', '"+clientes[i].CodGestor+"', '"+clientes[i].CodPrestamo+"', '"+clientes[i].FechaPrestamo+"', '"+clientes[i].FechaVencimientoPrestamo+"', '"+clientes[i].NroCuotasPrestamo+"', '"+clientes[i].NroCuotasResta+"', '"+clientes[i].VlrCuota+"', '"+clientes[i].VlrIntreses+"', '"+clientes[i].VlrPrestamo+"', '"+clientes[i].VlrSaldoConInteres+"', '"+clientes[i].VlrSaldoSinInteres+"', '0','','')");
                 }
+
                 OcultarDivCargando();
+                alert("El cliente ha sido registrado exitosamente.")
                 localStorage.setItem("idGestor", localStorage.getItem("idGestor"));
                 location.href = "lista_clientes.html";
             }

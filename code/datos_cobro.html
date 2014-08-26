@@ -67,11 +67,15 @@
                     <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
                 
                 <div class="sidebar-breadcrumb">
                 </div>
             </div>         
-        </div>
+          </div>
         <div id="content" class="page-content">
             <div class="page-header">
                 <a href="#" class="deploy-sidebar"></a>
@@ -413,7 +417,9 @@
                     ajuste = $('#txtAjuste').val();
                 }
             tx.executeSql("INSERT INTO recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud) VALUES ('"+localStorage.getItem("clienteConsultado")+"', '"+localStorage.getItem("codPrestamo")+"', '"+localStorage.getItem("idGestor")+"', '"+fecha+"', '"+$('#txtNumeroCuotas').val()+"', '"+ajuste+"', '"+localStorage.getItem("latitud")+"', '"+localStorage.getItem("longitud")+"')");
-            location.href=location.href;
+            //location.href=location.href;
+            cancelar();
+            document.getElementById("btnRecaudo").style.display = "none !important";
         }
 
         $(document).ready(function () {

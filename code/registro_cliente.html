@@ -131,7 +131,7 @@
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Fecha de nacimiento:<span>(requerido)</span></label>
-                            <input type="text" name="txtFecha" value="" class="contactField requiredField"
+                            <input type="text" placeholder="AAAA/MM/DD" name="txtFecha" value="" class="contactField requiredField"
                                 id="txtFecha" />
                         </div>
                         <div class="formFieldWrap">
@@ -198,9 +198,19 @@
         var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};
         var clientes = [];
 
+        function validarFormatoFecha(campo) {
+              var RegExPattern = /^\d{2,4}\/\d{1,2}\/\d{1,2}$/;
+              if ((campo.match(RegExPattern)) && (campo!='')) {
+                    return true;
+              } else {
+                    return false;
+              }
+        }
+
         function guardarCliente(){
             
-            var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
+            if(validarFormatoFecha($('#txtFecha').val())){
+                var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -231,6 +241,10 @@
                         }, 
                         timeout: 15000                          
                     });
+            }
+            else{
+                alert("La fecha la debe ingresar en formato AAAA/MM/DD");
+            }
         
         }
 

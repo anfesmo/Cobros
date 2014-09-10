@@ -7,10 +7,7 @@ function configurar_db() {
         //tx.executeSql('DROP TABLE recaudos ');
         tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud)');
         //gestor, cliente, fecha, numero cuotas, id prestamo, ajuste
-        tx.executeSql('CREATE TABLE IF NOT EXISTS recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud)');
-        //tx.executeSql('CREATE TABLE IF NOT EXISTS noticias (id)');
-        //tx.executeSql('INSERT INTO usuarios (usuario, password) VALUES ("john", "202cb962ac59075b964b07152d234b70")');
-        //tx.executeSql('INSERT INTO usuarios (usuario, password) VALUES ("juan", "912ec803b2ce49e4a541068d495ab570")');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud, Observacion)');        
         //cedula o pasaporte, numero cedula, nombre, apellidos, edad, fecha nacimiento, sexo, telefono, celular, dirección, correo, gestor
         tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (TipoDocumento, NumeroDocumento, Nombres, Apellidos, Edad, FechaNacimiento, Sexo, Telefono, Celular, Direccion, Correo, Gestor)');
     }

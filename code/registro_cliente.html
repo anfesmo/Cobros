@@ -16,7 +16,7 @@
         media="(device-width: 768px)  and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"
         media="(device-width: 768px) and (orientation: landscape)    and (-webkit-device-pixel-ratio: 2)" />
-    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <title>Gestion Cobros</title>
     <link href="styles/style.css" rel="stylesheet" type="text/css">
     <link href="styles/framework.css" rel="stylesheet" type="text/css">
     <link href="styles/owl.carousel.css" rel="stylesheet" type="text/css">
@@ -35,6 +35,7 @@
     <script type="text/javascript" src="scripts/framework.launcher.js"></script>
     <script type="text/javascript" src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
     <script type="text/javascript" src="scripts/bd.js"></script>
+
 </head>
 <body>
     <div id="preloader">
@@ -68,11 +69,15 @@
                 </div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Sincronizar<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
                     <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
                 
@@ -92,7 +97,7 @@
                 <div class="decoration">
                 </div>
                 <div class="container no-bottom">
-                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
+                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;" >
                     <fieldset>
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
@@ -121,13 +126,7 @@
                                 Apellidos:<span>(requerido)</span></label>
                             <input type="text" name="txtApellidos" value="" class="contactField requiredField"
                                 id="txtApellidos" />
-                        </div>
-                        <div class="formFieldWrap">
-                            <label class="field-title contactEmailField" for="contactEmailField">
-                                Edad:<span>(requerido)</span></label>
-                            <input type="text" name="txtEdad" value="" class="contactField requiredField"
-                                id="txtEdad" />
-                        </div>
+                        </div>                       
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Fecha de nacimiento:<span>(requerido)</span></label>
@@ -169,7 +168,7 @@
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Enviar" data-formid="contactForm" onclick="guardarCliente();" />
+                                value="Enviar" data-formid="contactForm" onclick="MM_validateForm('selectTipo','','R','txtDocumento','','R','txtNombres','','R','txtApellidos','','R','txtFecha','','R','selectSexo','','R','txtTelefono','','R','txtCelular','','R','txtDireccion','','R','txtCorreo','','isEmail');return document.MM_returnValue" />
                         </div>
                     </fieldset>
                     </form>
@@ -279,6 +278,26 @@
 
             //tx.executeSql("SELECT * FROM clientes WHERE idCliente = ");
         }
+		
+		function MM_validateForm() { //v4.0		
+		  if (document.getElementById){
+			var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+			for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+			  if (val) { nm=val.name; if ((val=val.value)!="") {
+				if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+				  if (p<1 || p==(val.length-1)) errors+='- '+nm+' debe contener una dirección de correo electrónica.\n';
+				} else if (test!='R') { num = parseFloat(val);
+				  if (isNaN(val)) errors+='- '+nm+' debe contener un número.\n';
+				  if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+					min=test.substring(8,p); max=test.substring(p+1);
+					if (num<min || max<num) errors+='- '+nm+' debe contener un número entre '+min+' y '+max+'.\n';
+			  } } } else if (test.charAt(0) == 'R') errors += '- '+nm.slice(3,20)+' es requerido.\n'; }
+			} 			
+			if (errors) alert('Los siguientes erro(s) ocurrieron:\n'+errors); else{guardarCliente();}
+			document.MM_returnValue = (errors == '');
+		}}
+
+		//else {alert ('no encontro errores'); guardarCliente();} 
     </script>
     <style>
         #contactNameField {

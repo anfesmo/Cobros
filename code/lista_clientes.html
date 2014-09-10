@@ -4,7 +4,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <title>Gestion Cobros</title>
     <link href="styles/style.css" rel="stylesheet" type="text/css">
     <link href="styles/framework.css" rel="stylesheet" type="text/css">
     <link href="styles/owl.carousel.css" rel="stylesheet" type="text/css">
@@ -63,13 +63,17 @@
                 </div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Sincronizar<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
                     <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
                 
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -79,7 +83,7 @@
             <div class="page-header">
                 <a href="#" class="deploy-sidebar"></a>
                 <img class="header-logo" src="images/drugs/odc-texto.png" width="71" alt="img">
-                <a href="lista_mis_productos.html" class="deploy-contact"></a>
+                
             </div>
             <div class="page-header-clear">
             </div>
@@ -111,7 +115,7 @@
                 </div>
                  <div class="formFieldWrap">
                     <label class="field-title contactNameField" for="contactNameField">
-                        Código interno o cédula del cliente a buscar:</label>
+                        Nombre, Código interno o cédula del cliente a buscar:</label>
                     <input type="text" name="contactNameField" value="" class="contactField requiredField"
                         id="txtCodigo" />
                 </div>
@@ -227,7 +231,7 @@
         }
 
         function buscar_cliente(tx) {
-            tx.executeSql("SELECT * FROM clientes WHERE CodCliente = '"+$('#txtCodigo').val()+"' OR NroIdentificacion='"+$('#txtCodigo').val()+"'", [], llenar_clientes, function (error) {
+            tx.executeSql("SELECT * FROM clientes WHERE CodCliente = '"+$('#txtCodigo').val()+"' OR NroIdentificacion='"+$('#txtCodigo').val()+"' OR Nombre LIKE '%"+$('#txtCodigo').val()+"%'", [], llenar_clientes, function (error) {
                 //console.log("Error consultado el usuario: " + error)
             });
         }

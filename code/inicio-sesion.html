@@ -16,7 +16,7 @@
         media="(device-width: 768px)  and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"
         media="(device-width: 768px) and (orientation: landscape)    and (-webkit-device-pixel-ratio: 2)" />
-    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <title>Gestion Cobros</title>
     <link href="styles/style.css" rel="stylesheet" type="text/css">
     <link href="styles/framework.css" rel="stylesheet" type="text/css">
     <link href="styles/owl.carousel.css" rel="stylesheet" type="text/css">
@@ -68,9 +68,18 @@
                 </div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="inicio-sesion.html" class="nav-item home-locales">Inicio de sesión<em class="unselected-item"></em></a>
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Sincronizar<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+                
                 
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -266,17 +275,19 @@
 
         function consultar_recaudos_nuevos(tx) {
             tx.executeSql("SELECT * FROM recaudos ", [], subir_recaudos, function (error) {
-                //console.log("Error consultado el usuario: " + error)
+                console.log("Error consultado el usuario: " + error)
             });
         }
 
         function subir_recaudos(tx, results) {
             var len = results.rows.length;
-            var texto="";
-            if (len > 0) {
+            var texto="";            
+			if (len > 0) {
                 for (var i = 0; i < len; i++) {
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste;
-                    $.ajax({
+					
+					var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
+                    console.log(url);
+					$.ajax({
                         url: url,
                         type: 'GET',
                         dataType: 'json',
@@ -297,7 +308,7 @@
                             });
                         },
                         error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
+                            alert("No se encuentra una conexión 3G o Wifi activa.")
                             //OcultarDivCargando();
                         }, 
                         timeout: 15000                          

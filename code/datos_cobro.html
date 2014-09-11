@@ -215,20 +215,20 @@
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
                                 Valor del préstamo:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="txtValor" maxlength="8" onKeyPress="return acceptNumPunto(event)" />
+                            <input type="number" name="contactNameField" value="" class="contactField requiredField"
+                                id="txtValor" min="0" max="1000000" required autofocus  />
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Número de cuotas:<span>(requerido)</span></label>
-                            <input type="text" name="contactEmailField" value="20" class="contactField requiredField"
-                                id="txtCuotas" maxlength="8" onKeyPress="return acceptNumPunto(event)" />
+                            <input type="number" name="contactEmailField" value="20" class="contactField requiredField"
+                                id="txtCuotas" min="0" max="100" required />
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Valor del interés:<span>(requerido)</span></label>
-                            <input type="text" name="contactEmailField" value="20" class="contactField requiredField"
-                                id="txtInteres" maxlength="8" onKeyPress="return acceptNumPunto(event)" />
+                            <input type="number" name="contactEmailField" value="20" class="contactField requiredField"
+                                id="txtInteres" min="0" max="100" required  />
                         </div>
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
@@ -247,14 +247,14 @@
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
                                 Número de cuotas:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="txtNumeroCuotas" maxlength="8" onKeyPress="return acceptNum(event)"/>
+                            <input type="number" name="contactNameField" value="" class="contactField requiredField"
+                                id="txtNumeroCuotas" min="0" max="100" required autofocus/>
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Valor ajuste:<span>(requerido)</span></label>
-                            <input type="text" name="contactEmailField" value="" class="contactField requiredField"
-                                id="txtAjuste" maxlength="8" onKeyPress="return acceptNumPunto(event)"/>
+                            <input type="number" name="contactEmailField" value="0" class="contactField requiredField"
+                                id="txtAjuste" min="-1000000" max="1000000" step="0.01" required />
                         </div>
 						<div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
@@ -499,20 +499,7 @@
             }else{alert("latitud y longitud no calculada");}
             consultarCliente();
         });
-
-		// validamos que solo se ingresen numeros y punto
-		var nav4 = window.Event ? true : false; 
-		function acceptNum(evt){  
-		// NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57  
-		var key = nav4 ? evt.which : evt.keyCode;  
-		return (key <= 13 || (key >= 48 && key <= 57)); 
-		} 
-		var nav5 = window.Event ? true : false; 
-		function acceptNumPunto(evt){  
-		// NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57  
-		var key = nav5 ? evt.which : evt.keyCode;  
-		return (key <= 13 || (key >= 48 && key <= 57) || key==46);
-		} 
+		
     </script>
 </body>
 </html> 

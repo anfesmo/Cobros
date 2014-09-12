@@ -78,8 +78,13 @@
 				<div class="navigation-item">
                     <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
                 </div>
+				<div class="sidebar-decoration"></div>
 				<div class="navigation-item">
-                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Reporte Preliquidación<em class="unselected-item"></em></a>
+                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Preliquidación<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="recaudos_prestamos_registrados.html" class="nav-item home-locales">Recaudos y Prestamos<em class="unselected-item"></em></a>
                 </div>
 				<div class="sidebar-decoration"></div>
                 
@@ -99,6 +104,24 @@
             <div class="content">
                 <div class="decoration">
                 </div>
+				<div class="container no-bottom" style="text-align: center;">
+                    <h3>
+                        SINCRONIZACIÓN DE PAGOS Y PRESTAMOS REALIZADOS POR EL GESTOR</h3>
+                </div>
+                <div class="decoration">
+                </div>
+                <div class="container no-bottom">
+                    <div class="big-notification blue-notification">
+                        <h4 class="uppercase">
+                            AYUDA</h4>
+                        <a href="#" class="close-big-notification">x</a>
+                        <p>
+                            En este módulo podrá realizar la sincronización de los pagos y préstamos de los clientes visitados.
+                        </p>
+                    </div>
+                </div>
+               
+                <br />
                 <div class="container no-bottom">
                     <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
                     <fieldset>
@@ -162,7 +185,7 @@
         var clientes = [];
 
         function iniciar_sesion() {
-            //$("#select_sector>option").remove();
+
             if($('#contactNameField').val() == ""){
                 alert("Debe ingresar el nombre de usuario");
             }
@@ -174,7 +197,7 @@
                     MostrarDivCargando();
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();
-                    //var texto = "";
+
                     var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
                     $.ajax({
                         url: url,
@@ -184,27 +207,20 @@
                         success: function (data) {
 
                             $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
+
                                 $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
+
                                     if(field[x].Codusua == 0){
                                         OcultarDivCargando();
                                         alert(field[x].Mensaje);
                                     }
                                     else{
                                         localStorage.setItem("idGestor", field[x].Codusua);
-                                        //subimos la nueva información
                                         subirInformacion();
-                                        //consultamos los datos de la base de datos
-                                        //clientes
-                                        //consultarClientes();
+
                                     }
                                 });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
+
                             });
                         },
                         error: function (x, y, z) {
@@ -227,7 +243,6 @@
 
         function consultar_prestamos_nuevos(tx) {
             tx.executeSql("SELECT * FROM clientes WHERE esNuevo = '1'", [], subir_prestamos, function (error) {
-                //console.log("Error consultado el usuario: " + error)
             });
         }
 
@@ -243,23 +258,13 @@
                         dataType: 'json',
                         crossDomain: true,
                         success: function (data) {
-
                             $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
                                 $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    //alert(field[x].CodPrestamo);
                                 });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
                             });
                         },
                         error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
-                            //OcultarDivCargando();
+
                         }, 
                         timeout: 15000                          
                     });
@@ -296,23 +301,13 @@
                         dataType: 'json',
                         crossDomain: true,
                         success: function (data) {
-
                             $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
                                 $.each(field, function (x, item) {
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
-                                    //alert(field[x].CodPrestamo);
                                 });
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
                             });
                         },
                         error: function (x, y, z) {
                             alert("No se encuentra una conexión 3G o Wifi activa.")
-                            //OcultarDivCargando();
                         }, 
                         timeout: 15000                          
                     });
@@ -332,24 +327,15 @@
                         success: function (data) {
 
                             $.each(data, function (i, field) {
-                                
-                                //var cant = field.length;
-                                //texto += " <option value='-1'>--TODOS--</option>";
                                 eliminarClientes();
                                 $.each(field, function (x, item) {
-                                    //alert("hola");
-                                    //texto += " <option value='" + field[x].idsector + "'>" + field[x].descripcion + "</option>";
                                     cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres};
                                     clientes[x] = cliente;
                                 });
                                 insertarClientes();
-                                //$("#select_sector").append(texto);
-                                //$("#select_sector").val("-1");
-                                //$("#select_sector").selectmenu('refresh');
                             });
                         },
                         error: function (x, y, z) {
-                            //alert("No se encuentra una conexión 3G o Wifi activa.")
                             OcultarDivCargando();
                         }, 
                         timeout: 15000                          
@@ -391,7 +377,6 @@
         function insertar_Clientes(tx) {
             if(clientes.length > 0){
                 for(i=0;i<clientes.length;i++){
-                    //alert(clientes[i].nombre);
                     tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"', '"+clientes[i].CodGestor+"', '"+clientes[i].CodPrestamo+"', '"+clientes[i].FechaPrestamo+"', '"+clientes[i].FechaVencimientoPrestamo+"', '"+clientes[i].NroCuotasPrestamo+"', '"+clientes[i].NroCuotasResta+"', '"+clientes[i].VlrCuota+"', '"+clientes[i].VlrIntreses+"', '"+clientes[i].VlrPrestamo+"', '"+clientes[i].VlrSaldoConInteres+"', '"+clientes[i].VlrSaldoSinInteres+"', '0','','')");
                 }
                 OcultarDivCargando();
@@ -400,11 +385,8 @@
             }
             else{
                 OcultarDivCargando();
-                //alert("No se encuentran clientes.")
             }
-            
 
-            //tx.executeSql("SELECT * FROM clientes WHERE idCliente = ");
         }
     </script>
     <style>

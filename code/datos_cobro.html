@@ -98,8 +98,13 @@
 				<div class="navigation-item">
                     <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
                 </div>
+				<div class="sidebar-decoration"></div>
 				<div class="navigation-item">
-                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Reporte Preliquidación<em class="unselected-item"></em></a>
+                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Preliquidación<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Recaudos y Prestamos<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
                 
@@ -129,7 +134,7 @@
                             AYUDA</h4>
                         <a href="#" class="close-big-notification">x</a>
                         <p>
-                            En este módulo encontrá la información detallada sobre el cliente seleccionado.
+                            En este módulo encontrará la información detallada sobre el cliente seleccionado.
                         </p>
                     </div>
                 </div>
@@ -215,25 +220,25 @@
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
                                 Valor del préstamo:<span>(requerido)</span></label>
-                            <input type="number" name="contactNameField" value="" class="contactField requiredField"
+                            <input type="number" name="txtValor" value="" class="contactField requiredField"
                                 id="txtValor" min="0" max="1000000" required autofocus  />
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Número de cuotas:<span>(requerido)</span></label>
-                            <input type="number" name="contactEmailField" value="20" class="contactField requiredField"
+                            <input type="number" name="txtCuotas" value="20" class="contactField requiredField"
                                 id="txtCuotas" min="0" max="100" required />
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Valor del interés:<span>(requerido)</span></label>
-                            <input type="number" name="contactEmailField" value="20" class="contactField requiredField"
+                            <input type="number" name="txtInteres" value="20" class="contactField requiredField"
                                 id="txtInteres" min="0" max="100" required  />
                         </div>
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Guardar" data-formid="contactForm" onclick="guardarPrestamo();" />
+                                value="Guardar" data-formid="contactForm" onclick="MM_validateFormGuardarPrestamo('txtValor','','RinRange0:10000000','txtCuotas','','RinRange0:100','txtInteres','','RinRange0:100' );return document.MM_returnValue" />
                                 <input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
                                 value="Cancelar" data-formid="contactForm" onclick="cancelar();" />
                         </div>
@@ -247,14 +252,14 @@
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
                                 Número de cuotas:<span>(requerido)</span></label>
-                            <input type="number" name="contactNameField" value="" class="contactField requiredField"
+                            <input type="number" name="txtNumeroCuotas" value="" class="contactField requiredField"
                                 id="txtNumeroCuotas" min="0" max="100" required autofocus/>
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
                                 Valor ajuste:<span>(requerido)</span></label>
-                            <input type="number" step="0.01" name="contactEmailField" value="0.00" class="contactField requiredField"
-                                id="txtAjuste" min="-1000000" max="1000000"  />
+                            <input type="numeric"  name="txtAjuste" value="0" class="contactField requiredField"
+                                id="txtAjuste"   />
                         </div>
 						<div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
@@ -269,7 +274,7 @@
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Guardar" data-formid="contactForm" onclick="guardarRecaudo();" />
+                                value="Guardar" data-formid="contactForm" onclick="MM_validateFormGuardarRecaudo('txtNumeroCuotas','','RinRange0:100','txtAjuste','','RinRange-1000000:1000000' );return document.MM_returnValue" />
                                 <input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
                                 value="Cancelar" data-formid="contactForm" onclick="cancelar();" />
                         </div>
@@ -315,22 +320,56 @@
         }
     </style>
     <script>
+		// Función para validar campos de formulario de recaudo
+		function MM_validateFormGuardarRecaudo() { //v4.0		
+		  if (document.getElementById){
+			var i,p,q,nm,test,num,min,max,errors='',args=MM_validateFormGuardarRecaudo.arguments;
+			for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+			  if (val) { nm=val.name; if ((val=val.value)!="") {
+				if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+				  if (p<1 || p==(val.length-1)) errors+='- '+nm.slice(3,20)+' debe contener una dirección de correo electrónica.\n';
+				} else if (test!='R') { num = parseFloat(val);
+				  if (isNaN(val)) errors+='- '+nm.slice(3,20)+' debe contener un número.\n';
+				  if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+					min=test.substring(8,p); max=test.substring(p+1);
+					if (num<min || max<num) errors+='- '+nm.slice(3,20)+' debe contener un número entre '+min+' y '+max+'.\n';
+			  } } } else if (test.charAt(0) == 'R') errors += '- '+nm.slice(3,20)+' es requerido.\n'; }
+			} 			
+			if (errors) alert('Los siguientes erro(s) ocurrieron:\n'+errors); else{guardarRecaudo();}
+			document.MM_returnValue = (errors == '');
+		}}
 
-
-        function mostrarClientes() {
+		// Función para validar campos de formulario de prestamos
+        function MM_validateFormGuardarPrestamo() { //v4.0		
+		  if (document.getElementById){
+			var i,p,q,nm,test,num,min,max,errors='',args=MM_validateFormGuardarPrestamo.arguments;
+			for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+			  if (val) { nm=val.name; if ((val=val.value)!="") {
+				if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+				  if (p<1 || p==(val.length-1)) errors+='- '+nm.slice(3,20)+' debe contener una dirección de correo electrónica.\n';
+				} else if (test!='R') { num = parseFloat(val);
+				  if (isNaN(val)) errors+='- '+nm.slice(3,20)+' debe contener un número.\n';
+				  if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+					min=test.substring(8,p); max=test.substring(p+1);
+					if (num<min || max<num) errors+='- '+nm.slice(3,20)+' debe contener un número entre '+min+' y '+max+'.\n';
+			  } } } else if (test.charAt(0) == 'R') errors += '- '+nm.slice(3,20)+' es requerido.\n'; }
+			} 			
+			if (errors) alert('Los siguientes erro(s) ocurrieron:\n'+errors); else{guardarPrestamo();}
+			document.MM_returnValue = (errors == '');
+		}}
+		
+		function mostrarClientes() {
             location.href = "lista_clientes.html";
         }
 
         function consultarCliente(){
             var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
             db.transaction(consultar_cliente, errorGeneralBD, function () {
-                //console.log("Consultó el usuario")
             });
         }
 
         function consultar_cliente(tx) {
             tx.executeSql("SELECT * FROM clientes WHERE CodCliente = '"+localStorage.getItem("clienteConsultado")+"' order by VlrPrestamo desc", [], llenar_cliente, function (error) {
-                //console.log("Error consultado el usuario: " + error)
             });
         }
 
@@ -349,10 +388,8 @@
                     document.getElementById("lblSaldoCon").innerHTML = document.getElementById("lblSaldoCon").innerHTML +results.rows.item(i).VlrSaldoConInteres;
                     document.getElementById("lblSaldoSin").innerHTML = document.getElementById("lblSaldoSin").innerHTML +results.rows.item(i).VlrSaldoSinInteres;
                     if(results.rows.item(i).VlrPrestamo == 0){
-                        $('#btnNuevoPrestamo').show();
-                        
+                        $('#btnNuevoPrestamo').show();                        
                         document.getElementById("btnRecaudo").style.display = "none !important";
-                        //$('#btnRecaudo').hide();
                     }
                     else{
                         $('#btnNuevoPrestamo').hide();
@@ -370,7 +407,6 @@
             }
             else {
                 alert("No se encontró información del cliente.");
-                //location.reload();
             }
         }
 
@@ -410,8 +446,7 @@
                     }
                     else{
                         var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
-                        db.transaction(guardar_prestamo, errorGeneralBD, function () {
-                            //console.log("Consultó el usuario")
+                        db.transaction(guardar_prestamo, errorGeneralBD, function () {						
                         });
                     }
                 }
@@ -474,12 +509,10 @@
 				longitudrecadudo = localStorage.getItem("longitud");
 			}
 			var sql = "INSERT INTO recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud, Observacion) VALUES ('"+localStorage.getItem("clienteConsultado")+"', '"+localStorage.getItem("codPrestamo")+"', '"+localStorage.getItem("idGestor")+"', '"+fecha+"', '"+$('#txtNumeroCuotas').val()+"', '"+ajuste+"','"+latitudrecadudo+"', '"+longitudrecadudo+"', '"+$('#selectObservacion').val()+"')";	            
-			//alert(sql);
 			tx.executeSql(sql);
             
             localStorage.setItem("codigoAnterior", localStorage.getItem("clienteConsultado"));
             location.href=location.href;
-            //cancelar();
 
         }
 

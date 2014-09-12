@@ -79,8 +79,13 @@
 				<div class="navigation-item">
                     <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
                 </div>
+				<div class="sidebar-decoration"></div>
 				<div class="navigation-item">
-                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Reporte Preliquidación<em class="unselected-item"></em></a>
+                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Preliquidación<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="recaudos_prestamos_registrados.html" class="nav-item home-locales">Recaudos y Prestamos<em class="unselected-item"></em></a>
                 </div>
                 <div class="sidebar-decoration"></div>
                 
@@ -99,6 +104,24 @@
             <div class="content">
                 <div class="decoration">
                 </div>
+				<div class="container no-bottom" style="text-align: center;">
+                    <h3>
+                        ESTADO DE PRELIQUIDACIÓN DE GESTOR</h3>
+                </div>
+                <div class="decoration">
+                </div>
+                <div class="container no-bottom">
+                    <div class="big-notification blue-notification">
+                        <h4 class="uppercase">
+                            AYUDA</h4>
+                        <a href="#" class="close-big-notification">x</a>
+                        <p>
+                            En este módulo podrás visualizar la información de del estado actual de su preliquidación y numero de errores al sincronizar.
+                        </p>
+                    </div>
+                </div>
+               
+                <br />
                 <div class="container no-bottom">
                     <form method="post" class="contactForm" id="contactForm" style="display: block !important;" >
                     <fieldset>
@@ -156,11 +179,7 @@
                         success: function (data) {
                             $.each(data, function (i, field) {                                                             
                                 $.each(field, function (x, item) {
-                                    //preliquidacion = {Concepto:field[x].Concepto, Valor:field[x].Valor};									
-                                    //preliquidacion[x] = preliquidacion;	
-									//alert("concepto: "+field[x].Concepto+" valor:"+field[x].Valor);
 									contenido+='<tr><td>'+field[x].Concepto+'</td><td>'+field[x].Valor+'</td></tr>';
-									//alert(contenido);
                                 });
                             });
                         texto+=contenido+'</table>';

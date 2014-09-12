@@ -464,7 +464,7 @@
         function guardarRecaudo(){
             //fecha, numero cuota, valor ajuste
             // validar que el numero de cuotas por el valor de la cuota no supere el saldo que queda por pagar            
-			if($('#selectObservacion').val() == "" && $('#txtNumeroCuotas').val() == "0"){
+			if($('#selectObservacion').val() == "0" && $('#txtNumeroCuotas').val() == "0"){
 				alert("Si el recaudo es igual a cero, debe seleccionar una de las observaciones listadas.")
 			}else{
 				if($('#txtNumeroCuotas').val() == ""){

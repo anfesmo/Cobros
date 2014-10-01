@@ -198,7 +198,7 @@
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();
 
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
+                    var url = "https://173.203.60.110:50002/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -251,7 +251,7 @@
             var texto="";
             if (len > 0) {
                 for (var i = 0; i < len; i++) {
-                    var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
+                    var url = "https://173.203.60.110:50002/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -293,7 +293,7 @@
 			if (len > 0) {
                 for (var i = 0; i < len; i++) {
 					
-					var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
+					var url = "https://173.203.60.110:50002/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
                     console.log(url);
 					$.ajax({
                         url: url,
@@ -318,7 +318,7 @@
         }
 
         function consultarClientes(){
-            var url = "https://sgc.solucionesglobalessa.com:33449/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
+            var url = "https://173.203.60.110:50002/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -350,6 +350,7 @@
         }
 
         function eliminar_clientes(tx) {
+
             tx.executeSql("DELETE FROM clientes", [], validar_eliminacion, function (error) {
                 console.log("Error eliminando los clientes" + error)
             });
@@ -357,6 +358,7 @@
             tx.executeSql("DELETE FROM recaudos", [], validar_eliminacion, function (error) {
                 console.log("Error eliminando los recaudos" + error)
             });
+			localStorage.setItem("codigoAnterior", "");		
         }
 
         function validar_eliminacion(tx, results) {

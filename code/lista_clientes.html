@@ -199,9 +199,20 @@
         function llenar_clientes(tx, results) {
             var len = results.rows.length;
             var texto="";
+			
             if (len > 0) {
                 for (var i = 0; i < len; i++) {
-                    texto+='<div class="container"><div class="toggle-2"><a href="#" class="deploy-toggle-2">'+results.rows.item(i).Nombre+' - ' + results.rows.item(i).CodCliente + '</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div><a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Tel. '+results.rows.item(i).Telefono+'</li></ul></a><a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Cédula: '+results.rows.item(i).NroIdentificacion+'</li></ul></a><br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Consultar" onclick="consultarCobros('+results.rows.item(i).CodCliente+');" /><br /></div></div></div></div></div>';
+				var imgcalidad="";
+				    if(results.rows.item(i).Calificacion == 1){ 
+					   imgcalidad="<a href='#' class='circleExcelente'>";
+					} 
+					if(results.rows.item(i).Calificacion == 2){ 
+						imgcalidad="<a href='#' class='circleMedio'>";
+					} 
+					if(results.rows.item(i).Calificacion == 3){ 
+						imgcalidad="<a href='#' class='circleMalo'>";
+					}
+                    texto+='<div class="container"><div class="toggle-2"><a href="#" class="deploy-toggle-2">'+results.rows.item(i).Nombre+ ' - ' + results.rows.item(i).CodCliente +' '+imgcalidad+'</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div><a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Tel. '+results.rows.item(i).Telefono+'</li></ul></a><a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Cédula: '+results.rows.item(i).NroIdentificacion+'</li></ul></a><br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Consultar" onclick="consultarCobros('+results.rows.item(i).CodCliente+');" /><br /></div></div></div></div></div>';
                 }
                 document.getElementById("div_Clientes").innerHTML = texto;
                 $('.deploy-toggle-2').click(function () {

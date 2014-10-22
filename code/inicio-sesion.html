@@ -181,7 +181,7 @@
             configurar_db();
         });
 
-        var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};
+        var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:"", Calificacion:""};
         var clientes = [];
 
         function iniciar_sesion() {
@@ -328,9 +328,9 @@
 
                             $.each(data, function (i, field) {
                                 eliminarClientes();
-                                $.each(field, function (x, item) {
-                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres};
-                                    clientes[x] = cliente;
+                                $.each(field, function (x, item) {								   
+                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres, Calificacion:field[x].Calificacion};
+									clientes[x] = cliente;
                                 });
                                 insertarClientes();
                             });
@@ -365,7 +365,7 @@
             console.log("eliminados");
         }
 
-        function errorGeneralBD(err) {
+        function errorGeneralBD(err){ 
             console.log(err);
         }
 
@@ -378,8 +378,9 @@
 
         function insertar_Clientes(tx) {
             if(clientes.length > 0){
-                for(i=0;i<clientes.length;i++){
-                    tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"', '"+clientes[i].CodGestor+"', '"+clientes[i].CodPrestamo+"', '"+clientes[i].FechaPrestamo+"', '"+clientes[i].FechaVencimientoPrestamo+"', '"+clientes[i].NroCuotasPrestamo+"', '"+clientes[i].NroCuotasResta+"', '"+clientes[i].VlrCuota+"', '"+clientes[i].VlrIntreses+"', '"+clientes[i].VlrPrestamo+"', '"+clientes[i].VlrSaldoConInteres+"', '"+clientes[i].VlrSaldoSinInteres+"', '0','','')");
+			
+                for(i=0;i<clientes.length;i++){				             
+					tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud, Calificacion) VALUES ('"+clientes[i].CodCliente+"', '"+clientes[i].nombre+"', '"+clientes[i].telefono+"', '"+clientes[i].cedula+"', '"+clientes[i].CodGestor+"', '"+clientes[i].CodPrestamo+"', '"+clientes[i].FechaPrestamo+"', '"+clientes[i].FechaVencimientoPrestamo+"', '"+clientes[i].NroCuotasPrestamo+"', '"+clientes[i].NroCuotasResta+"', '"+clientes[i].VlrCuota+"', '"+clientes[i].VlrIntreses+"', '"+clientes[i].VlrPrestamo+"', '"+clientes[i].VlrSaldoConInteres+"', '"+clientes[i].VlrSaldoSinInteres+"', '0','','', '"+clientes[i].Calificacion+"')");					
                 }
                 OcultarDivCargando();
                 localStorage.setItem("idGestor", localStorage.getItem("idGestor"));

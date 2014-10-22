@@ -912,4 +912,36 @@ background-color: rgba(0,0,0,0.7);
     position: fixed;
     left: 46%;
 }
-
+.circleExcelente {
+	width: 13px;
+    height: 13px;
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    background: #33CC33;
+	position: absolute;
+	left: 35px;
+	top: 18px;
+}
+.circleMedio {
+	width: 13px;
+    height: 13px;
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    background: #FFFF00;
+	position: absolute;
+	left: 35px;
+	top: 18px;
+}
+.circleMalo {
+	width: 13px;
+    height: 13px;
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    background: #FF0000;
+	position: absolute;
+	left: 35px;
+	top: 18px;
+}

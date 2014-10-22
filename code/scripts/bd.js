@@ -4,8 +4,9 @@ var listaId = "";
 function configurar_db() {
 
     function execute(tx) {
-        //tx.executeSql('DROP TABLE recaudos ');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud)');
+        tx.executeSql('DROP TABLE IF  EXISTS recaudos ');
+		tx.executeSql('DROP TABLE IF  EXISTS clientes ');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud, Calificacion)');
         //gestor, cliente, fecha, numero cuotas, id prestamo, ajuste
         tx.executeSql('CREATE TABLE IF NOT EXISTS recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud, Observacion)');        
         //cedula o pasaporte, numero cedula, nombre, apellidos, edad, fecha nacimiento, sexo, telefono, celular, dirección, correo, gestor

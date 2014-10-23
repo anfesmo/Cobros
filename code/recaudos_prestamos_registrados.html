@@ -208,15 +208,15 @@
 		
 		// Totalizamos los prestamos nuevos realizados
 		function consultar_prestamosrecaudos(tx) {
-            tx.executeSql("SELECT 'Numero Cobros Totales' as concepto, COUNT(1) AS total_prestamos FROM clientes WHERE VlrPrestamo > 0 "+
+            tx.executeSql("SELECT 'Numero Cobros Totales' as concepto, COUNT(1) AS total_prestamos FROM clientes WHERE CAST(VlrPrestamo AS NUMERIC) > 0 "+
 			              "UNION ALL "+
-						  "SELECT 'Numero Cobros Pendientes' as concepto, COUNT(1) AS total_prestamos FROM clientes WHERE CodCliente NOT IN (SELECT CodCliente FROM recaudos) "+
+						  "SELECT 'Numero Cobros Pendientes' as concepto, COUNT(1) AS total_prestamos FROM clientes WHERE CAST(VlrPrestamo AS NUMERIC) > 0 AND CAST(CodCliente AS INTEGER) NOT IN (SELECT CAST(CodCliente AS INTEGER) FROM recaudos) "+
 			              "UNION ALL "+
-						  "SELECT '% Cobros Realizados' as concepto, ((SELECT COUNT(1) FROM recaudos)*100/COUNT(1)) AS total_prestamos FROM clientes WHERE VlrPrestamo > 0 "+
+						  "SELECT '% Cobros Realizados' as concepto, ((SELECT COUNT(1) FROM recaudos)*100/COUNT(1)) AS total_prestamos FROM clientes WHERE CAST(VlrPrestamo AS NUMERIC) > 0 "+
 						  "UNION ALL "+
-						  "SELECT 'Total Prestamos Realizados' AS concepto, SUM(VlrPrestamo) AS total_prestamos FROM clientes WHERE esNuevo='1' "+
+						  "SELECT 'Total Prestamos Realizados' AS concepto, SUM(CAST(VlrPrestamo AS NUMERIC)) AS total_prestamos FROM clientes WHERE CAST(esNuevo AS INTEGER)=1 "+
 			              "UNION ALL "+
-						  "SELECT 'Total Recaudos Realizados' AS concepto, SUM((clientes.VlrCuota * recaudos.NroCuotas) + recaudos.Ajuste) FROM clientes INNER JOIN recaudos ON clientes.CodCliente=recaudos.CodCliente", [], llenar_totalprestamosrecaudos, function (error) {
+						  "SELECT 'Total Recaudos Realizados' AS concepto, SUM((CAST(clientes.VlrCuota AS NUMERIC) * CAST(recaudos.NroCuotas AS INTEGER)) + CAST(recaudos.Ajuste AS NUMERIC)) FROM clientes INNER JOIN recaudos ON CAST(clientes.CodCliente AS INTEGER)=CAST(recaudos.CodCliente AS INTEGER)", [], llenar_totalprestamosrecaudos, function (error) {
                 console.log("Error consultado el prestamos y recauso: " + error)
             });
         }

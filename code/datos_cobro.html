@@ -458,7 +458,7 @@
             //codigo cliente, valor prestamo, fecha, numero cuotas, interés, codigo gestor
             var f = new Date();
             var fecha= f.getFullYear()+ "/" + (f.getMonth() +1) + "/" + f.getDate() + " " + f.getHours() + ":" + f.getMinutes()+":00";
-            tx.executeSql("UPDATE clientes SET FechaPrestamo='"+fecha+"' , VlrPrestamo='"+$('#txtValor').val()+"' , VlrIntreses='"+$('#txtInteres').val()+"' , NroCuotasPrestamo='"+$('#txtCuotas').val()+"', esNuevo='1' WHERE CodCliente='"+localStorage.getItem("clienteConsultado")+"'");
+            tx.executeSql("UPDATE clientes SET FechaPrestamo='"+fecha+"' , VlrPrestamo='"+$('#txtValor').val()+"' , VlrIntreses='"+$('#txtInteres').val()+"' , NroCuotasPrestamo='"+$('#txtCuotas').val()+"', esNuevo='1', Latitud='"+localStorage.getItem("latitud")+"', Longitud='"+localStorage.getItem("longitud")+"' WHERE CodCliente='"+localStorage.getItem("clienteConsultado")+"'");
 			//tx.executeSql("INSERT INTO clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud) VALUES ('"+localStorage.getItem("clienteConsultado")+"', '"+document.getElementById("lblNombre").innerHTML+"', '', '', '"+localStorage.getItem("idGestor")+"', '', '"+fecha+"', '', '"+$('#txtCuotas').val()+"', '', '', '"+$('#txtInteres').val()+"', '"+$('#txtValor').val()+"', '', '', '1', '"+localStorage.getItem("latitud")+"', '"+localStorage.getItem("longitud")+"')");
             location.href=location.href;
         }

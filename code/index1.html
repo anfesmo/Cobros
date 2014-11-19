@@ -73,7 +73,27 @@
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
                 <div class="navigation-item">
                     <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
-                </div>                               
+                </div>
+                <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="inicio-sesion.html" class="nav-item home-locales">Sincronizar<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                    <a href="registro_cliente.html" class="nav-item home-locales">Registrar cliente<em class="unselected-item"></em></a>
+                </div>
+                <div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="lista_clientes.html" class="nav-item home-locales">Listado Clientes<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="reporte_preliquidacion.html" class="nav-item home-locales">Preliquidación<em class="unselected-item"></em></a>
+                </div>
+				<div class="sidebar-decoration"></div>
+				<div class="navigation-item">
+                    <a href="recaudos_prestamos_registrados.html" class="nav-item home-locales">Recaudos y Prestamos<em class="unselected-item"></em></a>
+                </div>
 				<div class="sidebar-decoration"></div>
                 
                 
@@ -99,45 +119,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
-                    <fieldset>
-                        <div class="formValidationError" id="usuario_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar el nombre de usuario</p>
-                            </div>
-                        </div>
-                        <div class="formValidationError" id="password_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar la contraseña</p>
-                            </div>
-                        </div>
-                        <div class="formFieldWrap">
-                            <label class="field-title contactNameField" for="contactNameField">
-                                Usuario:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="contactNameField" />
-                        </div>
-                        <div class="formFieldWrap">
-                            <label class="field-title contactEmailField" for="contactEmailField">
-                                Contraseña:<span>(requerido)</span></label>
-                            <input type="password" name="contactEmailField" value="" class="contactField requiredField"
-                                id="contactEmailField" />
-                        </div>
-                        <br />
-                        <div class="formSubmitButtonErrorsWrap">
-                            <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Enviar" data-formid="contactForm" onclick="iniciar_sesion();" />
-                            <div class="static-notification-green tap-dismiss-notification" style="display: none; margin-top: 15px;" id="div_guardado">
-                                <p class="center-text">Los datos han sido almacenados correctamente</p>
-                            </div>
-                        </div>
-                    </fieldset>
-                    </form>
-					
-					
-					<div class="slider-controls" data-snap-ignore="true">                
+                    <div class="slider-controls" data-snap-ignore="true">                
                         <div>
                             <img src="images/casos/img1.jpg" class="responsive-image" alt="img">
                             
@@ -178,33 +160,6 @@
             $('#' + control).fadeOut("slow");
         }
         
-		function iniciar_sesion() {
-
-            if($('#contactNameField').val() == ""){
-                alert("Debe ingresar el nombre de usuario para ingresar al sistema");
-            }
-            else{
-                if($('#contactEmailField').val() == ""){
-                    alert("Debe ingresar la contraseña");
-                }
-                else{
-                    MostrarDivCargando();
-                    var usuario = $('#contactNameField').val();
-                    var pass = $('#contactEmailField').val();
-					if(usuario == 'GestionVC'){
-							if(pass == '@$gestionVC2014$@'){
-								OcultarDivCargando();
-								sessionStorage.setItem("estadoLogin", "Exitoso");
-								location.href = "inicio-sesion.html";
-							}else
-								alert("La contraseña ingresada no es correcta, recuerde que debe inngresar el usuario de acceso no el de sincronización");	
-						}
-					else
-						alert("El usuario ingresado no es el correcto, recuerde que debe inngresar el usuario de acceso no el de sincronización");
-                }
-            
-            }
-        }
     </script>
     <style>
         .submenu-nav-items a

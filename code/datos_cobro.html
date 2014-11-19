@@ -320,6 +320,11 @@
         }
     </style>
     <script>
+		$( document ).ready(function() {
+		  if(sessionStorage.getItem("estadoLogin") != "Exitoso"){			  
+				location.href = "index.html";
+			}
+        });
 		// Función para validar campos de formulario de recaudo
 		function MM_validateFormGuardarRecaudo() { //v4.0		
 		  if (document.getElementById){

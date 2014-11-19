@@ -174,10 +174,14 @@
         }
     </style>
     <script>
-        $( document ).ready(function() {
-          var usuario = localStorage.getItem("idGestor");          
-		  consultarPrestamosRecaudos();		
-		  consultarClientes();
+        $( document ).ready(function() {          
+		  if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+			  var usuario = localStorage.getItem("idGestor");          
+			  consultarPrestamosRecaudos();		
+			  consultarClientes();
+		  }else{
+				location.href = "index.html";
+			}
         });
 
 

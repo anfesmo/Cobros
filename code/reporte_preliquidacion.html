@@ -157,9 +157,13 @@
         
     </div>
     <script type="text/javascript">
-        $( document ).ready(function() {
-          var usuario = localStorage.getItem("idGestor");
-          consultaPreliquidacion();
+        $( document ).ready(function() {          
+		  if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+			    var usuario = localStorage.getItem("idGestor");
+				consultaPreliquidacion();
+		  }else{
+				location.href = "index.html";
+		  }
         });
 		
 		var preliquidacion = {Concepto:"", Valor:""};

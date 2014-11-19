@@ -176,8 +176,12 @@
     </style>
     <script>
         $( document ).ready(function() {
-          var usuario = localStorage.getItem("idGestor");
-          consultarClientes();
+		  if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+			  var usuario = localStorage.getItem("idGestor");
+			  consultarClientes();
+		  }else{
+				location.href = "index.html";
+			}
         });
 
 

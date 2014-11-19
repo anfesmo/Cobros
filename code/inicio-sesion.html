@@ -178,7 +178,12 @@
     </div>
     <script type="text/javascript">
         $( document ).ready(function() {
-            configurar_db();
+		    if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+				configurar_db();
+			}else{
+				location.href = "index.html";
+			}
+			
         });
 
         var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:"", Calificacion:""};

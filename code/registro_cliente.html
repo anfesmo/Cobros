@@ -152,8 +152,8 @@
                         </div>                       
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
-                                Fecha de nacimiento:<span>(requerido)</span></label>
-                            <input type="text" placeholder="AAAA/MM/DD" name="txtFecha" value="" class="contactField requiredField"
+                                Fecha de nacimiento:</label>
+                            <input type="text" placeholder="AAAA/MM/DD" name="txtFecha" value="2000/01/01" class="contactField requiredField"
                                 id="txtFecha" />
                         </div>
                         <div class="formFieldWrap">
@@ -184,14 +184,14 @@
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
-                                Correo:<span>(requerido)</span></label>
+                                Correo:</label>
                             <input type="text" name="txtCorreo" value="" class="contactField requiredField"
                                 id="txtCorreo" />
                         </div>
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Enviar" data-formid="contactForm" onclick="MM_validateForm('selectTipo','','R','txtDocumento','','R','txtNombres','','R','txtApellidos','','R','txtFecha','','R','selectSexo','','R','txtTelefono','','R','txtCelular','','R','txtDireccion','','R','txtCorreo','','isEmail');return document.MM_returnValue" />
+                                value="Enviar" data-formid="contactForm" onclick="MM_validateForm('selectTipo','','R','txtDocumento','','R','txtNombres','','R','txtApellidos','','R','selectSexo','','R','txtTelefono','','R','txtCelular','','R','txtDireccion','','R','txtCorreo','','isEmail');return document.MM_returnValue" />
                         </div>
                     </fieldset>
                     </form>
@@ -213,8 +213,12 @@
         
     </div>
     <script type="text/javascript">
-        $( document ).ready(function() {
-            configurar_db();
+        $( document ).ready(function() {            
+		  if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+			  configurar_db();
+		  }else{
+				location.href = "index.html";
+			}
         });
 
         var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};

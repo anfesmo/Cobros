@@ -440,8 +440,8 @@ body {
 	background-color:#F98A38;
 	height:49px;
 	width:100%;
-	position:fixed;
-	z-index:1;
+	position:relative;
+	z-index:999999;
 }
 
 .page-header-clear{

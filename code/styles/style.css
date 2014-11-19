@@ -440,7 +440,8 @@ body {
 	background-color:#F98A38;
 	height:49px;
 	width:100%;
-	position:relative;
+	position:fixed;
+	top: 0px;
 	z-index:999999;
 }
 

@@ -441,7 +441,7 @@ body {
 	height:49px;
 	width:100%;
 	position:fixed;
-	z-index:999999;
+	z-index:1;
 }
 
 .page-header-clear{

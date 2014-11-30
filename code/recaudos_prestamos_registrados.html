@@ -43,6 +43,7 @@
           <div id="sidebar" class="page-sidebar">
             <div class="page-sidebar-scroll">
                 <div class="sidebar-shortcuts">
+				    <a href="#" class="shortcut-closedsession" title="Cerrar Sesión" onclick="closedSession();"></a>
                     <a href="#" class="shortcut-close"></a>
                 </div>
                 
@@ -181,6 +182,10 @@
 			}
         });
 
+		function closedSession(){
+		    sessionStorage.setItem("estadoLogin", "");
+			location.href = "index.html";
+		}
 
         function errorGeneralBD(err) {
             console.log(err);

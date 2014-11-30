@@ -49,18 +49,19 @@
         <div id="sidebar" class="page-sidebar">
             <div class="page-sidebar-scroll">
                 <div class="sidebar-shortcuts">
+				    <a href="#" class="shortcut-closedsession" title="Cerrar Sesión" onclick="closedSession();"></a>
                     <a href="#" class="shortcut-close"></a>
                 </div>
                 
                 <div class="sidebar-search">
                     <div class="search-box">
-                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?">
-                        <a href="#" class="search-close"></a>
+                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?"                        
+						<a href="#" class="search-close"></a>
                     </div>
                 </div>
                 
                 <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+                    <img src="images/drugs/logo_odc.png" height="52" alt="img">					
                 </div>
                 
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
@@ -217,7 +218,12 @@
 				location.href = "index.html";
 			}
         });
-
+		
+		function closedSession(){
+		    sessionStorage.setItem("estadoLogin", "");
+			location.href = "index.html";
+		}
+		
         var cliente = {nombre:"", cedula:"", telefono:"", CodCliente:0, CodGestor:"", CodPrestamo:"", FechaPrestamo:"", FechaVencimientoPrestamo:"", NroCuotasPrestamo:"", NroCuotasResta:"", VlrCuota:"", VlrIntreses:"", VlrPrestamo:"", VlrSaldoConInteres:"", VlrSaldoSinInteres:""};
         var clientes = [];
 
@@ -230,9 +236,19 @@
               }
         }
 
-        function guardarCliente(){
-            
+		function validarCaracteresEspeciales(campo) {
+              var RegExPattern = /^[\s\da-zA-Z-]*$/;
+              if ((campo.match(RegExPattern)) && (campo!='')) {
+                    return true;
+              } else {
+                    return false;
+              }
+        }
+		
+        function guardarCliente(){            
             if(validarFormatoFecha($('#txtFecha').val())){
+			  if(validarCaracteresEspeciales($('#txtDireccion').val())){
+				if(parseInt(localStorage.getItem("idGestor")) > 0 ){	               
                 var url = "https://173.203.60.110:50002/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
@@ -243,7 +259,7 @@
 
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {
-                                    cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres};
+									cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres};
                                     clientes[x] = cliente;
                                 });
                                 insertarClientes();
@@ -254,7 +270,13 @@
                         }, 
                         timeout: 15000                          
                     });
-            }
+				}else{
+				  alert("El codigo de Gestor se ha perdido, para poder crear el cliente debe sincronizar");
+				}
+			  }else{
+				alert("La dirección no puede contener los siguientes caracteres especiales # $ % &");
+			  }
+			}
             else{
                 alert("La fecha la debe ingresar en formato AAAA/MM/DD");
             }

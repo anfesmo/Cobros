@@ -177,7 +177,7 @@
             if(localStorage.getItem("idGestor") != ""  ){
 			    var texto='<table><tr><td><strong>Concepto</strong></td><td><strong>Valor</strong></td></tr>';
                 var contenido="";				
-                var url = "https://173.203.60.110:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
+                var url = "https://50.57.3.132:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',

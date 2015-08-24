@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
@@ -177,7 +177,7 @@
             if(localStorage.getItem("idGestor") != ""  ){
 			    var texto='<table><tr><td><strong>Concepto</strong></td><td><strong>Valor</strong></td></tr>';
                 var contenido="";				
-                var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
+                var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',

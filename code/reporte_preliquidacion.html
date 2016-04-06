@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 
-                <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+               <div class="sidebar-logo">
+                    <img src="images/drugs/logo_odc.png" height="80" alt="img">
                 </div>
                 
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
@@ -144,11 +144,7 @@
                     <img src="images/bx_loader.gif" alt="loding" class="CargandoModalBackgroundImage" />
                 </div>
                 <div class="container">
-                    <div class="footer-socials">
-                        <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
-                            class="twitter-footer"></a>
-                    </div>
-                   <p class="copyright uppercase center-text no-bottom">Gestión de cobros 2014<br> Todos los derechos reservados</p>      
+                   <center> 2014 &copy; Todos los Derechos Reservados.</center>
                 </div>
             </div>
         </div>
@@ -177,7 +173,7 @@
             if(localStorage.getItem("idGestor") != ""  ){
 			    var texto='<table><tr><td><strong>Concepto</strong></td><td><strong>Valor</strong></td></tr>';
                 var contenido="";				
-                var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
+                var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getPreliquidacionGestor?gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',

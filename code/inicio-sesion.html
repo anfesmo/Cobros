@@ -60,7 +60,7 @@
                 </div>
                 
                 <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+                    <img src="images/drugs/logo_odc.png" height="80" alt="img">
                 </div>
                 
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
@@ -95,7 +95,7 @@
         <div id="content" class="page-content">
             <div class="page-header">
                 <a href="#" class="deploy-sidebar"></a>
-                <img class="header-logo" src="images/drugs/odc-texto.png" width="71" alt="img">
+                <img class="header-logo" src="images/drugs/odc-texto.png" width="80" alt="img">
             </div>
             <div class="page-header-clear">
             </div>
@@ -164,11 +164,7 @@
                     <img src="images/bx_loader.gif" alt="loding" class="CargandoModalBackgroundImage" />
                 </div>
                 <div class="container">
-                    <div class="footer-socials">
-                        <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
-                            class="twitter-footer"></a>
-                    </div>
-                   <p class="copyright uppercase center-text no-bottom">Gestión de cobros 2014<br> Todos los derechos reservados</p>      
+                   <center> 2014 &copy; Todos los Derechos Reservados.</center>
                 </div>
             </div>
         </div>
@@ -206,7 +202,7 @@
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();
 
-                    var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
+                    var url = "http://52.27.64.81:8082/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -259,7 +255,7 @@
             var texto="";
             if (len > 0) {
                 for (var i = 0; i < len; i++) {
-                    var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
+                    var url = "http://52.27.64.81:8082/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -301,7 +297,7 @@
 			if (len > 0) {
                 for (var i = 0; i < len; i++) {
 					
-					var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
+					var url = "http://52.27.64.81:8082/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
                     console.log(url);
 					$.ajax({
                         url: url,
@@ -326,7 +322,7 @@
         }
 
         function consultarClientes(){
-            var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
+            var url = "http://52.27.64.81:8082/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -335,7 +331,9 @@
                         success: function (data) {
 
                             $.each(data, function (i, field) {
-                                eliminarClientes();
+                                
+								eliminarClientes();
+								
                                 $.each(field, function (x, item) {								   
                                     cliente = {nombre:field[x].Nombres, cedula:field[x].NroIdentificacion, telefono:field[x].Telefono, CodCliente:field[x].CodCliente, CodGestor:field[x].CodGestor, CodPrestamo:field[x].CodPrestamo, FechaPrestamo:field[x].FechaPrestamo, FechaVencimientoPrestamo:field[x].FechaVencimientoPrestamo, NroCuotasPrestamo:field[x].NroCuotasPrestamo, NroCuotasResta:field[x].NroCuotasResta, VlrCuota:field[x].VlrCuota, VlrIntreses:field[x].VlrIntreses, VlrPrestamo:field[x].VlrPrestamo, VlrSaldoConInteres:field[x].VlrSaldoConInteres, VlrSaldoSinInteres:field[x].VlrSaldoSinInteres, Calificacion:field[x].Calificacion};
 									clientes[x] = cliente;

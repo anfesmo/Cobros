@@ -35,7 +35,7 @@ body {
 
 .page-sidebar{
     /*background-color: #F67F7B;*/
-    background-color: #D3D3D3;
+    background-color: #FBFBFB;
 	background-repeat:repeat;
 	background-size:75px 75px;
 	width:274px;
@@ -50,8 +50,8 @@ body {
 }
 
 .page-sidebar-scroll{
-	z-index:2;
-	width:294px;
+	z-index:0;
+	width:296px;
     overflow: scroll;
     overflow-x: hidden;
    /* -webkit-overflow-scrolling: touch;*/
@@ -71,9 +71,9 @@ body {
 }
 
 .sidebar-shortcuts{
-	background-color:#F98A38;
+	background-color:#EE6705;
 	height:50px;	
-	border-bottom:solid 1px #2a2a2a;
+	border-bottom:solid 0px ;
 }
 
 .sidebar-shortcuts a{
@@ -104,8 +104,8 @@ body {
 	width:70px;
 	height:50px;
 	position:absolute;
-	border-right:solid 1px rgba(0,0,0,0.2);
-	border-bottom:solid 1px rgba(0,0,0,0.2);
+	border-right:solid 0px rgba(0,0,0,0);
+	border-bottom:solid 0px rgba(0,0,0,0);
 }
 .shortcut-facebook{
 	background-image:url(../images/misc/shortcut_facebook.png);
@@ -197,18 +197,18 @@ body {
 }
 
 .sidebar-logo{
-	padding-top:30px;
-	padding-left:25px;
-	margin-bottom:30px;
+	padding-top:10px;
+	padding-left:10px;
+	margin-bottom:10px;
 }
 
 .sidebar-breadcrumb{
 	border-top:solid 1px rgba(255,255,255,0.05);
 	border-bottom:solid 1px rgba(255,255,255,0.05);
-	background-color:#F98A38;
+	background-color:#EE6705;
 	color: White;
 	font-weight: bold;
-	font-size:10px;
+	font-size:14px;
 	padding-top:5px;
 	padding-bottom:5px;
 	padding-left:20px;
@@ -448,7 +448,7 @@ body {
 }
 
 .page-header{
-	background-color:#F98A38;
+	background-color:#EE6705;
 	height:49px;
 	width:100%;
 	position:fixed;

@@ -61,7 +61,7 @@
                 </div>
                 
                 <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="52" alt="img">					
+                    <img src="images/drugs/logo_odc.png" height="80" alt="img">
                 </div>
                 
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
@@ -200,11 +200,7 @@
                     <img src="images/bx_loader.gif" alt="loding" class="CargandoModalBackgroundImage" />
                 </div>
                 <div class="container">
-                    <div class="footer-socials">
-                        <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
-                            class="twitter-footer"></a>
-                    </div>
-                   <p class="copyright uppercase center-text no-bottom">Gestión de cobros 2014<br> Todos los derechos reservados</p>      
+                   <center> 2014 &copy; Todos los Derechos Reservados.</center>
                 </div>
             </div>
         </div>
@@ -249,7 +245,7 @@
             if(validarFormatoFecha($('#txtFecha').val())){
 			  if(validarCaracteresEspeciales($('#txtDireccion').val())){
 				if(parseInt(localStorage.getItem("idGestor")) > 0 ){	               
-                var url = "https://bi2.solucionesglobalessa.com:50002/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
+                var url = "http://52.27.64.81:8082/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
                     $.ajax({
                         url: url,
                         type: 'GET',

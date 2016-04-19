@@ -202,11 +202,8 @@
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();
 
-<<<<<<< HEAD
                     var url = "http://52.27.64.81:8082/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
-=======
-                    var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getUsuario?login="+usuario+"&password="+pass;
->>>>>>> origin/master
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -259,11 +256,8 @@
             var texto="";
             if (len > 0) {
                 for (var i = 0; i < len; i++) {
-<<<<<<< HEAD
                     var url = "http://52.27.64.81:8082/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
-=======
-                    var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getPrestamosClientes?clie_id="+results.rows.item(i).CodCliente+"&pres_valor="+results.rows.item(i).VlrPrestamo+"&pres_fecha="+results.rows.item(i).FechaPrestamo+"&pres_numcuotas="+results.rows.item(i).NroCuotasPrestamo+"&pres_interes="+results.rows.item(i).VlrIntreses+"&gest_id="+results.rows.item(i).CodGestor+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud;
->>>>>>> origin/master
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -305,11 +299,8 @@
 			if (len > 0) {
                 for (var i = 0; i < len; i++) {
 					
-<<<<<<< HEAD
 					var url = "http://52.27.64.81:8082/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
-=======
-					var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getPagosCliente?gest_id="+results.rows.item(i).CodGestor+"&clie_id="+results.rows.item(i).CodCliente+"&pres_id="+results.rows.item(i).CodPrestamo+"&reca_fecha="+results.rows.item(i).Fecha+"&reca_numerocuotas="+results.rows.item(i).NroCuotas+"&reca_vlrajuste="+results.rows.item(i).Ajuste+"&latitud="+results.rows.item(i).Latitud+"&longitud="+results.rows.item(i).Longitud+"&observacion="+results.rows.item(i).Observacion;
->>>>>>> origin/master
+
                     console.log(url);
 					$.ajax({
                         url: url,
@@ -334,11 +325,9 @@
         }
 
         function consultarClientes(){
-<<<<<<< HEAD
+
             var url = "http://52.27.64.81:8082/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
-=======
-            var url = "https://websrvccobrosinteraseo.sgsas.co:50002/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
->>>>>>> origin/master
+
                     $.ajax({
                         url: url,
                         type: 'GET',

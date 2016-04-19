@@ -6,10 +6,9 @@ function configurar_db() {
     function execute(tx) {        
 		//tx.executeSql('DROP TABLE IF  EXISTS clientes ');
         tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (CodCliente, Nombre, Telefono, NroIdentificacion, CodGestor, CodPrestamo, FechaPrestamo, FechaVencimientoPrestamo, NroCuotasPrestamo, NroCuotasResta, VlrCuota, VlrIntreses, VlrPrestamo, VlrSaldoConInteres, VlrSaldoSinInteres, esNuevo, Latitud, Longitud, Calificacion)');
-        //gestor, cliente, fecha, numero cuotas, id prestamo, ajuste
-        tx.executeSql('CREATE TABLE IF NOT EXISTS recaudos (CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud, Observacion)');        
-        //cedula o pasaporte, numero cedula, nombre, apellidos, edad, fecha nacimiento, sexo, telefono, celular, dirección, correo, gestor
-        //tx.executeSql('CREATE TABLE IF NOT EXISTS clientes (TipoDocumento, NumeroDocumento, Nombres, Apellidos, Edad, FechaNacimiento, Sexo, Telefono, Celular, Direccion, Correo, Gestor)');
+        //tx.executeSql('DROP TABLE IF  EXISTS recaudos ');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS recaudos (idrecaudo integer primary key autoincrement, CodCliente, CodPrestamo, CodGestor, Fecha, NroCuotas, Ajuste, Latitud, Longitud, Observacion, Sincronizado text)');        
+        
     }
 
     function error(error) {
@@ -38,33 +37,6 @@ function GuardarMarca(tx) {
     tx.executeSql('INSERT INTO marcadores (latitud, longitud, texto) VALUES ("' + latitud + '", "' + longitud + '", "' + texto + '")');
 }
 
-/*Guarda en bd las noticias que no considera nuevas*/
-
-function guardarNoticia(ident){
-    
-    var n = listaId.indexOf("" + ident + "");
-
-    if(n == -1)
-    {
-        listaId += ident;
-        localStorage.setItem("listaId", listaId);
-    }
-}
-
-function guardarNoticia1(ident) {
-    id = ident;
-    var db = window.openDatabase("bd_reportes", "1.0", "Gestionar Noticia", 100000);
-    db.transaction(EliminarNoticia, errorOperacion, operacionEfectuada);
-    db.transaction(GuardarNoticia, errorOperacion, operacionEfectuada);
-}
-
-function EliminarNoticia(tx) {
-    tx.executeSql('DELETE FROM noticias WHERE id = "' + id + '"');
-}
-
-function GuardarNoticia(tx) {
-    tx.executeSql('INSERT INTO noticias (id) VALUES ("' + id + '")');
-}
 
 // Transaction error callback
 function errorOperacion(err) {

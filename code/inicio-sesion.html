@@ -1,4 +1,5 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
@@ -272,12 +273,12 @@
                         error: function (x, y, z) {
 
                         }, 
-                        timeout: 15000                          
+                        timeout: 10000                          
                     });
                 }
                 
             }
-             setTimeout("subirRecaudo()", 5000);
+             setTimeout("subirRecaudo()", 15000);
         }
 
         function subirRecaudo(){
@@ -310,20 +311,33 @@
                         success: function (data) {
                             $.each(data, function (i, field) {
                                 $.each(field, function (x, item) {
+									var db = window.openDatabase("bd_cobros", "1.0", "Gestion cobros", 200000);
+									db.transaction(
+										function (transaction) {
+											transaction.executeSql("UPDATE recaudos SET Sincronizado = '"+ field[x].CodPago +"' WHERE idrecaudo = " + results.rows.item(i).idrecaudo + ";"); // array of values for the ? placeholders
+										}
+									);
                                 });
                             });
                         },
                         error: function (x, y, z) {
                             alert("No se encuentra una conexión 3G o Wifi activa.")
                         }, 
-                        timeout: 15000                          
+                        timeout: 10000                          
                     });
                 }
                 
             }
-             setTimeout("consultarClientes()", 5000);
+			
+			
+             setTimeout("consultarClientes()", 15000);
         }
 
+	
+		
+		function validar_recaudo(tx, results) {
+            console.log("sincronizado con exito recuado");
+        }
         function consultarClientes(){
 
             var url = "http://52.27.64.81:8082/ServiceCobros.svc/getClientesGestor?gest_id="+localStorage.getItem("idGestor");
@@ -366,7 +380,7 @@
                 console.log("Error eliminando los clientes" + error)
             });
 
-            tx.executeSql("DELETE FROM recaudos", [], validar_eliminacion, function (error) {
+            tx.executeSql("DELETE FROM recaudos WHERE Sincronizado <> ''", [], validar_eliminacion, function (error) {
                 console.log("Error eliminando los recaudos" + error)
             });
 			localStorage.setItem("codigoAnterior", "");		

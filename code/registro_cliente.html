@@ -246,7 +246,7 @@
             if(validarFormatoFecha($('#txtFecha').val())){
 			  if(validarCaracteresEspeciales($('#txtDireccion').val())){
 				if(parseInt(localStorage.getItem("idGestor")) > 0 ){	               
-                var url = "http://52.27.64.81:8082/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
+                var url = "https://23.253.187.200:50002/ServiceCobros.svc/getCrearCliente?para_tipoident100="+$('#selectTipo').val()+"&clie_nroidentifica="+$('#txtDocumento').val()+"&clie_nombres="+$('#txtNombres').val()+"&clie_apellidos="+$('#txtApellidos').val()+"&clie_fecnacimiento="+$('#txtFecha').val()+"&para_sexo101="+$('#selectSexo').val()+"&clie_telfijo="+$('#txtTelefono').val()+"&clie_movil="+$('#txtCelular').val()+"&clie_diresidencia="+$('#txtDireccion').val()+"&clie_email="+$('#txtCorreo').val()+"&gest_id="+localStorage.getItem("idGestor");
 
                     $.ajax({
                         url: url,
